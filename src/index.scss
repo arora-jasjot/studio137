@@ -1,0 +1,471 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+
+$background-color: #333333;
+$primary-color: #6e0cf9;
+$secondary-color: #11d0b7;
+
+@mixin flexBox($justify: center, $align: center){
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+.navbar{
+    @include flexBox(space-around, center);
+    padding: 25px;
+    background-color: white;
+
+    & .logo{
+        width: 134px;
+    }
+    & .logoBuilt{
+        height: 67.5px;
+    }
+    @media screen and (max-width: 830px) {
+        & .logoBuilt{
+            display: none;
+        }
+        & h1{
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.home{
+    background-color: $background-color;
+    width: 100%;
+    min-height: 100vh;
+    padding-bottom: 30px;
+    
+    & .landing{
+        width: 90%;
+        max-width: 1100px;
+        background-color: white;
+        border-radius: 10px;
+        margin: 30px auto 0 auto;
+        @include flexBox(center, stretch);
+        overflow: hidden;
+
+        & .videoBox{
+            width: 50%;
+            aspect-ratio: 1;
+            @include flexBox();
+            overflow: hidden;
+            position: relative;
+
+            & .video{
+                height: 100%;
+                object-fit: contain;
+                overflow-clip-margin: content-box;
+                overflow: clip;
+            }
+
+            & .playButton{
+                @include flexBox();
+                position: absolute;
+                background-color: #00000070;
+                padding: 10px 20px;
+                color: white;
+                font-size: 20px;
+                gap: 10px;
+                text-transform: uppercase;
+                bottom: 50px;
+                border-radius: 100px;
+                cursor: pointer;
+                z-index: 100;
+
+                & .playIcon{
+                    color: $primary-color;
+                }
+                &:hover .playIcon{
+                    color: $secondary-color;
+                }
+            }
+
+            & .videoControls{
+                @include flexBox();
+                position: absolute;
+                background-color: #00000070;
+                padding: 10px 20px;
+                color: white;
+                font-size: 20px;
+                gap: 30px;
+                bottom: 50px;
+                border-radius: 100px;
+                z-index: 100;
+
+                & .pauseIcon:hover, & .replayIcon:hover{
+                    color: $primary-color;
+                }
+            }
+        }
+
+        & .contentBox{
+            width: 50%;
+            padding: 30px;
+            padding-top: 50px;
+
+            & h1{
+                word-spacing: 0.4rem;
+                letter-spacing: 0.05rem;
+            }
+
+            & .primary{
+                color: $primary-color;
+            }
+
+            & ol{
+                padding: 0 15px;
+                margin: 20px 0;
+                font-size: 1.5rem;
+                line-height: 2.25rem;
+                font-weight: lighter;
+            }
+
+            & .actions{
+                @include flexBox(start, center);
+                gap: 40px;
+                margin-top: 40px;
+
+                & button{
+                    background-color: $primary-color;
+                    color: white;
+                    padding: 12px 30px;
+                    border-radius: 5px;
+                    transition: all 0.15s ease-in-out;
+                    border: none;
+                }
+
+                & button:hover{
+                    background-color: $secondary-color;
+                }
+                
+                & .timing{
+                    @include flexBox();
+                    gap: 10px;
+                }
+            }
+
+            .referrence{
+                font-size: 0.8rem;
+                margin: 10px 0;
+            }
+
+            .footer{
+                font-size: 0.8rem;
+                margin-top: 20px;
+                line-height: 1.2rem;
+            }
+        }
+
+        @media screen and (max-width: 1100px) {
+            & .contentBox{
+                padding: 20px;
+                padding-top: 30px;
+    
+                & h1{
+                    word-spacing: 0.2rem;
+                }
+    
+                & ol{
+                    padding: 0 10px;
+                    margin: 10px 0;
+                    font-size: 1.15rem;
+                    line-height: 2rem;
+                }
+    
+                & .actions{
+                    gap: 30px;
+                    margin-top: 20px;
+    
+                    & button{
+                        padding: 7px 20px;
+                    } 
+                }
+    
+                .referrence{
+                    font-size: 0.7rem;
+                }
+    
+                .footer{
+                    font-size: 0.7rem;
+                    line-height: 1rem;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 830px) {
+        & .landing{
+            display: block !important;
+    
+            & .videoBox{
+                width: 100%;
+                aspect-ratio: 16/9;
+    
+                & .video{
+                    width: 100%;
+                }
+            }
+
+            & .contentBox{
+                width: 100%;
+            }
+
+            @media screen and (max-width: 600px) {
+                & .contentBox{
+                    width: 100%;
+                    padding: 30px;
+                    padding-top: 30px;
+        
+                    & h1{
+                        word-spacing: 0rem;
+                        letter-spacing: 0rem;
+                        font-size: 1.5rem;
+                    }
+        
+                    & ol{
+                        padding: 0 20px;
+                        margin: 20px 0;
+                        font-size: 1.2rem;
+                        line-height: 2rem;
+                    }
+        
+                    & .actions{
+                        gap: 30px;
+                        margin-top: 30px;
+        
+                        & button{
+                            padding: 10px 20px;
+                            font-size: 0.7rem;
+                        }
+                    }
+        
+                    .referrence{
+                        font-size: 0.8rem;
+                        margin: 10px 0;
+                    }
+        
+                    .footer{
+                        font-size: 0.8rem;
+                        margin-top: 20px;
+                        line-height: 1.2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.assessment{
+    background-color: $background-color;
+    width: 100%;
+    min-height: 100vh;
+    padding-bottom: 30px;
+
+    & .main{
+        width: 90%;
+        max-width: 1100px;
+        background-color: white;
+        border-radius: 10px;
+        margin: 30px auto 0 auto;
+        padding: 50px;
+
+        & .progress{
+            & .progressBar{
+            width: 100%;
+            height: 7.5px;
+            border-radius: 10px;
+                background-color: #e9e9e9;
+                overflow: hidden;
+                position: relative;
+    
+                & .currentProgress{
+                    background-color: $primary-color;
+                    height: 100%;
+                    transition: all 0.5s ease-in-out;
+                    
+                }
+            }
+            & .progressPercentage{
+                text-align: end;
+                padding-bottom: 5px;
+                font-weight: 600;
+                color: $primary-color;
+                transition: all 0.5s ease-in-out;
+            }
+            & .questionCategory{
+                text-align: center;
+                font-size: 1.2rem;
+                margin-top: 10px;
+                font-weight: 600;
+                color: $primary-color;
+            }
+    
+            & .questionNumber{
+                text-align: center;
+                margin-top: 100px;
+                font-size: 1.25rem;
+            }
+            & .question{
+                text-align: center;
+                margin: 20px auto;
+                font-size: 1.5rem;
+                max-width: 768px;
+                line-height: 2.2rem;
+            }
+    
+            & .answers{
+                position: relative;
+                width: 100%;
+                max-width: 824px;
+                margin: auto;
+                margin-top: 50px;
+    
+               & .answerBar{
+                width: 100%;
+                height: 4px;
+                background-color: #e9e9e9;
+                }
+    
+                & .answerProgressBar{
+                    position: absolute;
+                    top: 0;
+                    left: -10px;
+                    width: calc(100% + 20px);
+                    height: 100%;
+                    @include flexBox(start, center);
+                    z-index: 999;
+    
+                    & .progressTail{
+                        background-color: $primary-color;
+                        height: 10px;
+                        border-top-left-radius: 100px;
+                        border-bottom-left-radius: 100px;
+                        transition: all 0.5s ease-in-out;
+                    }
+    
+                    & .progressHead{
+                        @include flexBox();
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 100%;
+                        background-color: white;
+                        border: 4px solid $primary-color;
+                        margin-left: -10px;
+    
+                        & .headbox{
+                            width: 7px;
+                            height: 7px;
+                            border-radius: 100%;
+                            background-color: $primary-color;
+                        }
+                    }
+                }
+    
+                & .answerBox{
+                    @include flexBox();
+                    flex-direction: column;
+                    width: 100px;
+                    text-align: center;
+                    font-size: 1.2rem;
+                    position: absolute;
+                    top: -3px;
+                    gap: 10px;
+                    cursor: pointer;
+    
+                    & .selectedAnswer{
+                        color: $primary-color;
+                        font-weight: 600;
+                    }
+    
+                    & .answerPoint{
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 100%;
+                        background-color: #b9b9b9;
+                    }
+                    &:nth-child(1){
+                        left: calc(0% - 50px);
+                    }
+                    &:nth-child(2){
+                        left: calc(25% - 50px);;
+                    }
+                    &:nth-child(3){
+                        left: calc(50% - 50px);;
+                    }
+                    &:nth-child(4){
+                        left: calc(75% - 50px);;
+                    }
+                    &:nth-child(5){
+                        left: calc(100% - 50px);;
+                    }
+                }
+            }
+            
+            & .buttonsFlex{
+                margin-top: 150px;
+                @include flexBox(space-between, center);
+                font-size: 1.2rem;
+    
+                & .button {
+                    @include flexBox();
+                    gap: 10px;
+                    padding: 10px 20px;
+                    cursor: pointer;
+    
+                    &:hover{
+                        background-color: #11d0b710;
+                    }
+                }
+            }
+        } 
+
+        & .loader{
+            padding: 150px;
+            @include flexBox();
+        }
+    }
+
+    @media screen and (max-width: 830px) {
+        & .main{
+            width: 90%;
+            max-width: 1100px;
+            background-color: white;
+            border-radius: 10px;
+            margin: 30px auto 0 auto;
+            padding: 50px;
+    
+            & .progress{
+
+                & .questionCategory{
+                    font-size: 1rem;
+                }
+        
+                & .questionNumber{
+                    margin-top: 50px;
+                    font-size: 1rem;
+                }
+                & .question{
+                    font-size: 1rem;
+                    line-height: 1.5rem;
+                }
+        
+                & .answers .answerBox{
+                        font-size: 1rem;
+                }
+                
+                & .buttonsFlex{
+                    margin-top: 100px;
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
