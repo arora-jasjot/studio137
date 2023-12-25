@@ -1,22 +1,38 @@
 import React, { useEffect, useState } from 'react'
+
 import Navbar from './Navbar'
-import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
+
 import { Navigate } from "react-router-dom";
 import { TailSpin } from 'react-loader-spinner';
+import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 
 
 export default function AssessmentPage() {
-    const [progressWidth, setProgressWidth] = useState("0");
-    const [questionNumber, setQuestionNumber] = useState(null);
-    const [selectedAnswer, setSelectedAnswer] = useState(null);
-    const [answersData, setAnswersData] = useState([]);
-    const [navigateTo, setNavigateTo] = useState("");
+    
     const questions = [
         "Our church's ministry strategy is firm but flexible to accommodate unexpected game changers such as AI.",
         "Our leadership team knows of the potential risks and rewards of leveraging AI.",
         "Our leadership team understands the value of tapping experts to educate our staff about AI."
-    ]
+    ];
 
+    const [navigateTo, setNavigateTo] = useState("");
+    const [progressWidth, setProgressWidth] = useState("0");
+    const [questionNumber, setQuestionNumber] = useState(null);
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [answersData, setAnswersData] = useState([]);
+
+    useEffect(() => {
+        if(questionNumber === null) {
+            setTimeout(() => {
+                setQuestionNumber(1);
+            }, 2000);
+        }
+        else{
+            let pw = (questionNumber/questions.length * 100).toFixed(0);
+            setProgressWidth(`${pw}%`);
+        }
+    }, [questionNumber])
+    
     const selectAnswer = (answer) => {
         setSelectedAnswer(answer);
         let a = answersData;
@@ -45,6 +61,7 @@ export default function AssessmentPage() {
             reset();
         }
     }
+    
     const goNext = () => {
         if(questionNumber !== questions.length){
             setQuestionNumber(q => q+1);
@@ -53,23 +70,14 @@ export default function AssessmentPage() {
             }
         }
     }
+    
     const reset = () => {
         setProgressWidth("0%");
         setQuestionNumber(null);
         setSelectedAnswer(null);
         setAnswersData([]);
     }
-    useEffect(() => {
-        if(questionNumber === null) {
-            setTimeout(() => {
-                setQuestionNumber(1);
-            }, 2000);
-        }
-        else{
-            let pw = (questionNumber/questions.length * 100).toFixed(0);
-            setProgressWidth(`${pw}%`);
-        }
-    }, [questionNumber])
+    
   return (
     <div className='assessment'>
         {

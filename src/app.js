@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+
 import HomePage from './components/HomePage'
-import { Routes, Route } from "react-router-dom";
 import AssessmentPage from './components/AssessmentPage';
+
+import { Routes, Route } from "react-router-dom";
 
 export default class app extends Component {
   render() {

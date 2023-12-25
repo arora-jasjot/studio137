@@ -1,12 +1,17 @@
 import React, {useRef, useState} from 'react'
+
+import Navbar from './Navbar'
+
+import { Link } from "react-router-dom";
 import { FaPlay, FaPause, FaUndo  } from "react-icons/fa";
 import { LuClock3 } from "react-icons/lu";
-import Navbar from './Navbar'
-import { Link } from "react-router-dom";
 
 export default function HomePage() {
-  const [playing, setPlaying] = useState(false);
+  
   const vidRef = useRef(null);
+  
+  const [playing, setPlaying] = useState(false);
+  
   const handlePlayVideo = () => {
     vidRef.current.play();
     setPlaying(true);
@@ -18,6 +23,7 @@ export default function HomePage() {
   const handleReplayVideo = () => {
     vidRef.current.currentTime = 0;
   }
+  
   return (
     <div className='home'>
       <Navbar />
